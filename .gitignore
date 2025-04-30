@@ -1,0 +1,6 @@
+.DS_Store
+aud_aufnahmen/*
+.obsidian/*
+!.obsidian/graph.json
+aud_uebungen/*
+aud_tutorium/*
