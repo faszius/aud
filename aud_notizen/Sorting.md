@@ -21,3 +21,8 @@ Schlüssel(werte) müssen nicht eindeutig sein, aber müssen "sortierbar" sein
 
 Annahme im Folgenden: Es gibt eine [[Totale Ordnung|totale Ordnung]] $\leq$ auf der Menge $M$ aller möglichen Schlüsselwerte
 
+## Übersicht Sortieralgorithmen
+
+[[Insertion Sort]]
+[[Bubble Sort]]
+[[Merge Sort]]

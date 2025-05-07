@@ -88,8 +88,6 @@ Jede Ausführung der `WHILE`-Schleife erniedrigt `j<n` in jeder Iteration um 1 u
 
 Beweis der Korrektheit mittels [[Schleifeninvariante]]
 
-#TODO: Erklärung Schleifeninvariante
-
 **Schleifeninvariante der `FOR`-Schleife**
 Bei jedem Eintritt für Zählerwert `i` (und nach letzter Ausführung) entsprechen die aktuellen Einträge in `A[0]`, ..., `A[i-1]` den sortierten ursprünglichen Eingabewerten `a[0]`, ..., `a[i-1]`. Ferner gilt `A[i] = a[i]`, ..., `A[n-1] = a[n-1]`.
 
@@ -130,8 +128,8 @@ Zeile 7 wird dann wie Zeilen 2 und 3 $n-1$ Mal ausgeführt
 
 ![[aud_folien_02ab_sorting.pdf#page=28|aud_folien_02ab_sorting, page 28]]
 
-Somit erhalten wir eine maximale Gesamtlaufzeit von $$T(n) = c1 \cdot n + (c2 + c3 + c4 + c7) \cdot (n-1) + (c4 + c5 + c6) \cdot \frac{n(n-1)}{2}$$($+ c4 \cdot (n-1)$ scheint an dieser Stelle ausgelassen worden zu sein)
-
+Somit erhalten wir eine maximale Gesamtlaufzeit von 
+$$T(n) = c1 \cdot n + (c2 + c3 + c4 + c7) \cdot (n-1) + (c4 + c5 + c6) \cdot \frac{n(n-1)}{2}$$
 Die Frage ist jetzt, wie teuer eine Anweisung ist, welche Werte können wir also für $c1$ bis $c6$ einsetzen? Üblicherweise nehmen wir an, dass elementare Operationen in einem Schritt möglich sind. Wir können für unsere $ci$ also $1$ einsetzen, und erhalten $$T(n) = n + 4(n-1) + 3 \cdot \frac{n(n-1)}{2}$$
 
 ### Asymptotische Vereinfachung

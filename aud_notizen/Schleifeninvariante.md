@@ -6,7 +6,7 @@ tags:
 Eine Schleifeninvariante ist eine Aussage über eine Schleife, die *vor* jedem Eintritt in die Schleife wahr sein muss. Sie bezieht sich dabei fast immer auf den Zählerwert `i` vor Eintritt in die Schleife:
 "Vor dem `i`-ten Durchlauf der for-Schleife gilt \[Aussage die `i` beinhaltet\]"
 
-Im Idealfall ist die Schleifeninvariante so formuliert, dass wir nach dem allerletzten Durchlauf für `i=n-1`, bzw. vor dem *theoretischen* $n$-ten Durchlauf der Schleife (der jedoch nie praktisch stattfindet), wenn wir $i=n$ in die Schleifeninvariante einsetzen, die Aussage erhalten, dass unser Algorithmus das tut, was er machen soll - also zum Beispiel dass alle Elemente von `A[0]` bis `A[n-1]` sortiert sind oder das `min` das Minimum aller Elemente von `A[0]` bis `A[n-1]` ist.
+Im Idealfall ist die Schleifeninvariante so formuliert, dass wir nach dem aller letzten Durchlauf für `i=n-1`, bzw. vor dem *theoretischen* $n$-ten Durchlauf der Schleife (der jedoch nie praktisch stattfindet), wenn wir $i=n$ in die Schleifeninvariante einsetzen, die Aussage erhalten, dass unser Algorithmus das tut, was er machen soll - also zum Beispiel dass alle Elemente von `A[0]` bis `A[n-1]` sortiert sind oder das `min` das Minimum aller Elemente von `A[0]` bis `A[n-1]` ist.
 
 ## Beispiele
 
