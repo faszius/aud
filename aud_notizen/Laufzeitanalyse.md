@@ -6,6 +6,7 @@ aliases:
   - Laufzeit
 Related:
   - "[[Landau-Symbole]]"
+  - "[[Mastertheorem]]"
 ---
 
 ## Laufzeitanalyse
@@ -15,10 +16,6 @@ Frage: Wie viel Schritte macht der Algorithmus in Abhängigkeit von der Eingabek
 Beispielsweise: wenn ich mit [[Insertion Sort]] $n$ Zahlen sortieren möchte, wie viele Schritte macht Insertion Sort abhängig von $n$? 
 
 ![[aud_folien_02ab_sorting.pdf#page=25|aud_folien_02ab_sorting, page 25]]
-
-## Beispiel
-
-![[Insertion Sort#Laufzeitanalyse Insertion Sort]]
 
 ## Komplexitätsklassen
 
@@ -30,4 +27,5 @@ $n$ ist die Länge der Eingabe
 
 | Algorithmus        | Laufzeit      |
 | ------------------ | ------------- |
-| [[Insertion Sort]]  | $\Theta(n^2)$ |
+| [[Insertion Sort]] | $\Theta(n^2)$ |
+| [[Bubble Sort]]    | $\Theta(n^2)$ |

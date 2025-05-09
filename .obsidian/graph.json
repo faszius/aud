@@ -1,6 +1,6 @@
 {
   "collapse-filter": false,
-  "search": "-tag:#Doc -file:Übersicht.md -path:aud_uebungen  ",
+  "search": "-tag:#Doc -file:Übersicht.md -path:aud_uebungen  -path:aud_tutorium  ",
   "showTags": false,
   "showAttachments": false,
   "hideUnresolved": false,
@@ -53,6 +53,6 @@
   "repelStrength": 10,
   "linkStrength": 1,
   "linkDistance": 250,
-  "scale": 1.9708898885946227,
+  "scale": 1.5365272125375102,
   "close": true
 }

@@ -1,6 +1,7 @@
 ---
 tags:
   - foliensatz/02/c
+  - "#cleaned"
 ---
 
 ## Idee Merge Sort (Divide & Conquer)
@@ -38,8 +39,6 @@ Z2: Für alle Elemente der beiden Listen
 Z9: Kopiere das neue Array ins alte
 
 ## Beispiel
-
-#TODO Korrektheit Beispiel überprüfen
 
 Am Anfang wollen wir folgendes Array sortieren:
 `A = | 17 | 87 | 53 | 12 |`
@@ -222,4 +221,89 @@ Jetzt sind beide Teilarrays abgearbeitet. Wir springen zurück zu `mergeSort` 1 
 
 ## Korrektheit
 
-#TODO
+Wir beweisen die Korrektheit von Merge wieder mithilfe einer [[Schleifeninvariante]], deren Korrektheit wir per Induktion über `i` beweisen
+
+### Schleifeninvariante
+
+Schleifeninvariante (für die Schleife in Zeile 2): 
+Bei jedem Eintritt (bzw. nach Ende) gilt `i=p-left+q-(mid+1)`, `p<=mid+1`, `q<=right+1`. 
+Zudem ist `B[0...i-1]` sortiert und besteht aus `A[left...p-1]`, `A[mid+1...q-1]`.
+Ferner gilt: `B[i-1] <=A[p], A[q]`.
+
+Damit die Schleifeninvariante Sinn ergibt und gilt, machen wir auch noch folgende Annahmen: `B[-1] = `$- \infty$ , `A[p] = `$+ \infty$ für `p >= mid` und `A[q] = `$+ \infty$ für `q>right`
+
+> Der erste Teil der Schleifeninvariante sagt aus, dass `i` genau den Wert hat, wie viele Elemente schon einsortiert wurden, dass `i` nie größer als die Anzahl der einzusortierenden Elemente sein wird.
+> Der zweite Teil der Schleifeninvariante sagt aus, dass `B` die Elemente in sortierter Reihenfolge beinhaltet, die bis jetzt einsortiert wurden.
+> Der dritte Teil der Schleifeninvariante sagt aus, dass das letzte Element von `B` stets kleiner als die beiden Elemente sein wird, auf die `p` bzw. `q` gerade zeigen (was wichtig ist, um zu zeigen, dass `B` tatsächlich sortiert ist).
+> Um den dritten Teil der Schleifeninvariante zu zeigen, müssen wir davon ausgehen, dass `B[-1] = `$- \infty$ (da `B[-1]` keine echtes Element ist, dürfen wir diese Annahme treffen), und dass `A[p]` für alle `p >= mid` und `A[q]` für alle `q >= r` den Wert $+ \infty$ haben. Da der Algorithmus `p` und `q` beim Einsortieren genau so behandelt., als hätten sie den Wert $+ \infty$, wenn `p >= mid` bzw. `q >= r`, ist das auch eine gültige Annahme.
+
+### Korrektheit Der Schleifeninvariante per Induktion
+
+#### Basisfall
+
+Wir betrachten den Basisfall `i=0` (`p=left`, `q=mid+1`). 
+In diesem Fall gilt die Schleifeninvariante, da  `i = 0 = p-left+q-(mid+1) = left-left + (mid+1)-(mid+1) = 0 + 0 = 0`. 
+Außerdem ist `B[0...-1]` sortiert und besteht aus `A[left...left-1]` `A[mid+1...mid+1-1]`, da alle genannten Teilarrays keine Elemente enthalten.
+Zudem gilt `B[-1] <= A[left]` und `B[-1] <= A[mid+1]` (gilt auch nur dank unserer Annahmen).
+
+#### Induktionsschritt Von `i` Auf `i+1`
+
+Wir nehmen an, dass die Invariante vor der `i`-ten Iteration gilt.
+Die Iteration setzt dann `B[i]` auf den kleineren bzw. einzigen Wert (falls ein Teilarray schon abgearbeitet wurde) von `A[p]`, `A[q]`.
+Nach Voraussetzung ist `B[i-1] <= A[p], A[q]` (da das eine der Aussagen der Schleifeninvariante ist), sodass dann auch `B[i-1] <= B[i]` ist. Also ist `B[0...i]` nach der Iteration auch sortiert ist.
+
+> Bei jedem Eintritt (bzw. nach Ende) gilt `i=p-left+q-(mid+1)`, `p<=mid+1`, `q<=right+1`. 
+> <font color="aqua">Zudem ist B[0...i-1] sortiert</font> und besteht aus `A[left...p-1]`, `A[mid+1...q-1]`.
+> Ferner gilt: `B[i-1] <=A[p], A[q]`.
+
+Da die Teil-Arrays vorsortiert sind, gilt nach Zeile 4 bzw. 7 (also vor Erhöhen von `p` bzw. `q`): `B[i] = min{A[p], A[q]} <= A[p], A[p+1], A[q], A[q+1]`, sodass auch `B[i] <= A[p], A[q]` gilt.
+
+> Bei jedem Eintritt (bzw. nach Ende) gilt `i=p-left+q-(mid+1)`, `p<=mid+1`, `q<=right+1`. 
+> Zudem ist `B[0...i-1]` sortiert und besteht aus `A[left...p-1]`, `A[mid+1...q-1]`.
+> <font color="aqua">Ferner gilt: B[i-1] &lt;=A[p], A[q].</font>
+
+Danach wird der Zähler des kopierten Werts (also entweder `p` oder `q`) erhöht, weswegen `B[0...i]` dann auch aus `A[left...p-1]`, `A[mid+1...q-1]` besteht.
+
+> Bei jedem Eintritt (bzw. nach Ende) gilt `i=p-left+q-(mid+1)`, `p<=mid+1`, `q<=right+1`. 
+> Zudem ist `B[0...i-1]` sortiert und <font color="aqua">besteht aus A[left...p-1], A[mid+1...q-1]</font>.
+> Ferner gilt: `B[i-1] <=A[p], A[q]`.
+
+Wenn `p>=mid+1` bzw. `q>=right+1` (eine der Teilarrays also abgearbeitet wurde) wird das Teilarray nicht mehr gewählt, der dazugehörige Zählerwert also auch nicht mehr erhöht, sodass `p<=mid+1` und `q<=right+1` gilt.
+
+> Bei jedem Eintritt (bzw. nach Ende) gilt <font color="aqua">i=p-left+q-(mid+1), p&lt;=mid+1, q&lt;=right+1</font>. 
+> Zudem ist `B[0...i-1]` sortiert und besteht aus `A[left...p-1], A[mid+1...q-1]`.
+> Ferner gilt: `B[i-1] <=A[p], A[q]`.
+
+#### Terminierung
+
+Nach Ende der `FOR`-Schleife hat `i` den Wert `i=right-left+1`. Aus `i=p-left+q-(mid+1)`, `p<=mid+1` und `q<=right+1` (siehe Schleifeninvariante) folgt dass `q=right+1` und `p=mid+1`.
+Also erhalten wir mit der Schleifeninvariante die Aussage, dass `B[0...right-left]` aus `A[left...mid], A[mid+1...right]` besteht und sortiert ist, was genau das ist, was unser Algorithmus tun soll.
+
+## [[Laufzeitanalyse|Laufzeit]]abschätzung
+
+Wir wollen jetzt wissen, was die Laufzeit von Merge Sort ist. Vereinfacht lässt sie sich mithilfe folgender Gleichung darstellen:
+$$T(n) \leq 2 \cdot T\left(\frac{n}{2}\right) + c + dn$$
+(für $n \geq 2$)
+
+$2 \cdot T\left(\frac{n}{2}\right)$ erhalten wir daher, dass wir unser Array in zwei teilen, und den Algorithmus jeweils wieder auf jedes der beiden Teilarray aufrufen. Bedeutet wir haben zwei Mal $T$, aber nur mit einem halb so großen $n$, also $T\left(\frac{n}{2}\right)$.
+$c$ ist der konstante Aufwand, den wir zum Beispiel in der `IF`-Abfrage und dem berechnen von `floor` haben.
+$dn$ ist der Aufwand von `merge` (in diesem Fall $\mathcal{O}(n)$).
+Für $T(1)$ erhalten wir $T(1) \leq c$, weil der Algorithmus dann einfach nichts tut bzw. in konstanter Zeit abbricht.
+
+### Rekursion "manuell iterieren"
+
+Wie sieht es also aus, wenn wir die Gleichung nehmen und aufdröseln? Was für einen Wert bekommen wir dann für $2 \cdot T\left(\frac{n}{2}\right)$?
+Dann erhalten wir Folgendes:
+$$\begin{align}
+T(n) & \leq 2 \cdot T\left(\frac{n}{2}\right) + cn \\
+& \leq 2 \cdot \left( 2 \cdot T\left(\frac{n}{4} \right) + \frac{cn}{2} \right) + cn \\
+& \leq 2 \cdot \left( 2 \cdot \left( 2 \cdot T\left(\frac{n}{8} \right) + \frac{cn}{4} \right) + \frac{cn}{2} \right) + cn \\
+& \; \; \vdots \\
+& \leq 2 \cdot \left( 2 \cdot \left( 2 \ldots \left( 2 \cdot c + 2 \right) \ldots + \frac{cn}{4} \right) + \frac{cn}{2} \right) + cn
+\end{align}$$
+Die Gleichung wurde $\log_2 n$-mal unterteilt (da $\log_2$ uns ja sagt, wie oft wir etwas durch $2$ teilen können). 
+Da $T(1) \leq c$ und wir $\log_2 n$ mal unser Array durch zwei teilen, erhalten wir am Ende $2^{\log_2 n}$ Arrays der Länge $1$ und aus $2 \cdot T\left( \frac{n}{2} \right)$ wird $2^{\log_2 n} \cdot c$.
+$cn + \frac{cn}{2} + \frac{cn}{4} + \ldots$ können wir auf $\log_2 n \cdot cn$ aufrunden. 
+Am Ende erhalten wir also $T(n) \leq 2^{\log_2 n} \cdot c + \log_2 n \cdot cn = \mathcal{O}(n \log n)$.
+
+Dieses Vorgehen, um die Laufzeit rekursiver [[Algorithmen]] zu bestimmen, lässt sich auch verallgemeinern, wodurch man auf das [[Mastertheorem]] kommt.
