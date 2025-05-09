@@ -88,21 +88,28 @@ Jede Ausführung der `WHILE`-Schleife erniedrigt `j<n` in jeder Iteration um 1 u
 
 Beweis der Korrektheit mittels [[Schleifeninvariante]]
 
-**Schleifeninvariante der `FOR`-Schleife**
+### Schleifeninvariante
+
 Bei jedem Eintritt für Zählerwert `i` (und nach letzter Ausführung) entsprechen die aktuellen Einträge in `A[0]`, ..., `A[i-1]` den sortierten ursprünglichen Eingabewerten `a[0]`, ..., `a[i-1]`. Ferner gilt `A[i] = a[i]`, ..., `A[n-1] = a[n-1]`.
 
 >Wir unterscheiden zwischen dem sortierten Array `A` und dem ursprünglichen, unsortiertem Array `a`. Vor dem `i`-ten Schleifendurchlauf sind die Elemente `A[0]` bis `A[i-1]` die sortierte Version von `a[0]` bis `a[i-1]`, und die Elemente `A[i]` bis `A[n-1]` (also der Rest des Arrays) sind unverändert (also genau das gleiche wie `a[i]` bis `a[n-1]`).
 
-**Korrektheit der Schleifeninvariante per Induktion:**
+### Korrektheit Der Schleifeninvariante per Induktion
+
+#### Induktionsbasis
+
 Induktionsbasis: Beim ersten Eintritt ist `A[0] = a[0]` und "sortiert". Zudem gilt noch `A[1] = a[1]`, ..., `A[n-1] = a[n-1]`.
 
 >Für den ersten Durchlauf gilt die Schleifeninvariante. Dann ist nämlich `i=1` und `A[0]` bis `A[0]` ist die sortierte Version von `a[0]` bis `a[0]` (da das nur das erste Element ist). Und da die Schleife noch nicht gelaufen ist, gilt natürlich auch `A[0] = a[0]`, ..., `A[n-1] = a[n-1]`.
 
-**Induktionsschritt von i auf i+1:**
+#### Induktionsschritt Von `i` Auf `i+1`
+
 Vor der `i`-ten Ausführung galt die Schleifeninvariante nach Voraussetzung. Insbesondere war `A[0]`, ..., `A[i-1]` die sortierte Version von `a[0]`, ..., `a[i-1]` und `A[i] = a[i]`, ..., `A[n-1] = a[n-1]`.
 Durch die `WHILE`-Schleife wurde `A[i] = a[i]` nach links einsortiert und größere Elemente von `A[0]`, ..., `A[i-1]` um jeweils eine Position nach rechts verschoben. Elemente `A[i+1]`, ..., `A[n-1]` wurden nicht geändert. Also gilt die Invariante auch für `i`.
 
 >Wir wissen jetzt, dass die Schleifeninvariante vor dem ersten Durchlauf gilt. Nun wollen wir uns angucken, was in der Schleife passiert, und ob die Schleifeninvariante auch nach dem Durchlauf der Schleife gilt.
+
+#### Terminierung
 
 **Korrektheit des Algorithmus' aus Korrektheit der Schleifeninvariante:**
 Aus der Schleifeninvariante folgt für die letzte Ausführung (bzw. vor dem theoretischen Eintritt der Schleife für `i=n`):
