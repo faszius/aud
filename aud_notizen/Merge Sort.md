@@ -299,11 +299,17 @@ T(n) & \leq 2 \cdot T\left(\frac{n}{2}\right) + cn \\
 & \leq 2 \cdot \left( 2 \cdot T\left(\frac{n}{4} \right) + \frac{cn}{2} \right) + cn \\
 & \leq 2 \cdot \left( 2 \cdot \left( 2 \cdot T\left(\frac{n}{8} \right) + \frac{cn}{4} \right) + \frac{cn}{2} \right) + cn \\
 & \; \; \vdots \\
-& \leq 2 \cdot \left( 2 \cdot \left( 2 \ldots \left( 2 \cdot c + 2 \right) \ldots + \frac{cn}{4} \right) + \frac{cn}{2} \right) + cn
+& \leq 2 \cdot \left( 2 \cdot \left( 2 \ldots \left( 2 \cdot c + 2 \right) \ldots + \frac{cn}{4} \right) + \frac{cn}{2} \right) + cn \\
+& \leq 2^{\log_2 n} \cdot c + \log_2 n \cdot cn \\
+& = \mathcal{O}(n \log n)
 \end{align}$$
-Die Gleichung wurde $\log_2 n$-mal unterteilt (da $\log_2$ uns ja sagt, wie oft wir etwas durch $2$ teilen können). 
-Da $T(1) \leq c$ und wir $\log_2 n$ mal unser Array durch zwei teilen, erhalten wir am Ende $2^{\log_2 n}$ Arrays der Länge $1$ und aus $2 \cdot T\left( \frac{n}{2} \right)$ wird $2^{\log_2 n} \cdot c$.
-$cn + \frac{cn}{2} + \frac{cn}{4} + \ldots$ können wir auf $\log_2 n \cdot cn$ aufrunden. 
-Am Ende erhalten wir also $T(n) \leq 2^{\log_2 n} \cdot c + \log_2 n \cdot cn = \mathcal{O}(n \log n)$.
+Die Gleichung wurde $\log_2 n$-mal in $2$ unterteilt (da $\log_2$ uns ja sagt, wie oft wir etwas durch $2$ teilen können). Bedeutet, wenn wir unser Problem als einen Baum darstellen, dessen Knoten immer zwei Kinder haben, haben wir am Ende $2^{\log_2 n}$ Blätter.
+$c$ beschreibt den konstanten Aufwand, um die Blätter zu bearbeiten (z.B. in Form der `IF`-Abfrage in Zeile 1 von `mergeSort`). So kommen wir auf $2^{\log_2 n} \cdot c$.
+
+Wie eben schon erwähnt, ist $\log_2 n$ die Rekursionstiefe, also wie oft wir unser Problem aufteilen. $cn$ ist der Aufwand von Merge. So kommen wir auf $+ \log_2 n \cdot cn$.
+
+Insgesamt erhalten wir also 
+
+Am Ende erhalten wir also $T(n) \leq 2^{\log_2 n} \cdot c + \log_2 n \cdot cn$.
 
 Dieses Vorgehen, um die Laufzeit rekursiver [[Algorithmen]] zu bestimmen, lässt sich auch verallgemeinern, wodurch man auf das [[Mastertheorem]] kommt.

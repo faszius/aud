@@ -4,6 +4,7 @@ tags:
   - cleaned
 aliases:
   - Laufzeit
+  - Laufzeiten
 Related:
   - "[[Landau-Symbole]]"
   - "[[Mastertheorem]]"
