@@ -4,6 +4,11 @@ tags:
   - cleaned
 Related:
   - "[[Insertion Sort]]"
+  - "[[Bubble Sort]]"
+  - "[[Merge Sort]]"
+  - "[[Quicksort]]"
+  - "[[Vergleichsbasiertes Sortieren]]"
+  - "[[RadixSort]]"
 ---
 
 ## Das Sortierproblem

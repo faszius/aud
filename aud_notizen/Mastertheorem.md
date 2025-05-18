@@ -1,7 +1,7 @@
 ---
 tags:
   - foliensatz/02/c
-  - "#TODO"
+  - cleaned
 aliases:
   - Mastermethode
 ---
@@ -22,7 +22,7 @@ Die Interpretation der Gleichung sieht wie folgt aus:
 
 ## Mastermethode
 
-Je nachdem, welche Eigenschaft $f(n)$ hat, ergeben sich verschiedene [[Laufzeitanalyse|Laufzeiten]]en $T(n)$:
+Je nachdem, welche Eigenschaft $f(n)$ hat, ergeben sich verschiedene [[Laufzeitanalyse|Laufzeiten]] $T(n)$:
 
 Seien $a \geq 1$ und $b \gt 1$ Konstanten. Sei $f(n)$ eine positive Funktion und $T(n)$ über den nicht-negativen ganzen Zahlen durch die Rekursionsgleichung 
 $$T(n) = a \cdot T\left(\frac{n}{b}\right) + f(n)$$
@@ -44,7 +44,7 @@ definiert, wobei wir $\frac{n}{b}$ so interpretieren, dass damit entweder $\lflo
 $a = 4$
 $b = 2$
 $\log_b a = 2$
-Jedes Problem wird also halbiert und vierfach bearbeitet.
+Jedes Problem wird also von der Größe her halbiert und vierfach bearbeitet.
 
 ```mermaid
 graph TD;
